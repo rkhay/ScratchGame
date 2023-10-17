@@ -1,7 +1,11 @@
 package org.rkhayrit.models.symbols;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Miss {
+    @JsonProperty("type")
     private String type;
+    @JsonProperty("impact")
     private String impact;
 
     public String getType() {
@@ -10,13 +14,5 @@ public class Miss {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getImpact() {
-        return impact;
-    }
-
-    public void setImpact(String impact) {
-        this.impact = impact;
     }
 }

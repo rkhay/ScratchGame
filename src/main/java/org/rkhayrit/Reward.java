@@ -5,6 +5,7 @@ import org.rkhayrit.models.symbols.Symbols;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Reward {
     private final Map<Integer, Double> multiplier = new HashMap<>();
@@ -28,60 +29,54 @@ public class Reward {
         symbols.put(smbls.getE().getClass().getSimpleName(), smbls.getE().getRewardMultiplier());
         symbols.put(smbls.getF().getClass().getSimpleName(), smbls.getF().getRewardMultiplier());
 
-        symbols.put(smbls.get_10x().getRewardMultiplier().toString(), smbls.get_10x().getRewardMultiplier());
-        symbols.put(smbls.get_5x().getRewardMultiplier().toString(), smbls.get_5x().getRewardMultiplier());
-        symbols.put(smbls.get_1000().getExtra().toString(), smbls.get_1000().getExtra());
-        symbols.put(smbls.get_500().getExtra().toString(), smbls.get_500().getExtra());
+        symbols.put(smbls.get10X().getRewardMultiplier().toString(), smbls.get10X().getRewardMultiplier());
+        symbols.put(smbls.get5X().getRewardMultiplier().toString(), smbls.get5X().getRewardMultiplier());
+        symbols.put(smbls.get1000().getExtra().toString(), smbls.get1000().getExtra());
+        symbols.put(smbls.get500().getExtra().toString(), smbls.get500().getExtra());
         symbols.put(smbls.getmISS().getClass().getSimpleName(), 0d);
     }
 
-    public int calculateReward(Map<String, Integer> matchResult, Double betAmount) {
-        if (matchResult.size() == 1) {
-            System.out.println("There is no match");
-            return 0;
-        }
-
+    private int calculateStandardSymbolsReward(Map<String, Integer> matchResult, Double betAmount) {
         int reward = 0;
-        String bonusSymbol = "";
         Map<String, Double> diagonals = Matrix.getDiagonals();
         for (Map.Entry<String, Integer> map : matchResult.entrySet()) {
             double tempValue = 0;
 
             if (symbols.containsKey(map.getKey()) && map.getValue() > 1) {
-                System.out.println("bet = " + betAmount + " " + map.getKey() + " = " + symbols.get(map.getKey()) + " repetition = " + map.getValue() +
-                        " multiplier = " + multiplier.get(map.getValue()));
-                diagonals.entrySet().forEach(System.out::println);
-
                 tempValue = betAmount * symbols.get(map.getKey()) * map.getValue() * multiplier.get(map.getValue());
                 if (diagonals.containsKey(map.getKey())) {
-                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                    diagonals.entrySet().forEach(System.out::println);
                     tempValue *= diagonals.get(map.getKey());
                 }
-
             }
             reward += (int) tempValue;
-
-            if (map.getValue() == 1) {
-                bonusSymbol = map.getKey();
-            }
         }
+        return reward;
+    }
+
+    public int calculateReward(Map<String, Integer> matchResult, Double betAmount) {
+        if (matchResult.size() == 1) {
+            return 0;
+        }
+
+        int reward = calculateStandardSymbolsReward(matchResult, betAmount);
+
+        String bonusSymbol = matchResult.entrySet().stream()
+                .filter(e -> e.getValue() == 1)
+                .map(Map.Entry::getKey).collect(Collectors.joining());
 
         Symbols sm = Configuration.getConfig().getSymbols();
         if (!bonusSymbol.equals("MISS")) {
             String bonus = bonusSymbol.replaceAll("[^0-9]", "");
             double toDouble = Double.parseDouble(bonus);
 
-            if (symbols.get(Double.toString(toDouble)).equals(sm.get_500().getExtra()) ||
-                    symbols.get(Double.toString(toDouble)).equals(sm.get_1000().getExtra())) {
+            if (symbols.get(Double.toString(toDouble)).equals(sm.get500().getExtra()) ||
+                    symbols.get(Double.toString(toDouble)).equals(sm.get1000().getExtra())) {
                 reward += symbols.get(Double.toString(toDouble));
-            } else if (symbols.get(Double.toString(toDouble)).equals(sm.get_10x().getRewardMultiplier()) ||
-                    symbols.get(Double.toString(toDouble)).equals(sm.get_5x().getRewardMultiplier())) {
+            } else if (symbols.get(Double.toString(toDouble)).equals(sm.get10X().getRewardMultiplier()) ||
+                    symbols.get(Double.toString(toDouble)).equals(sm.get5X().getRewardMultiplier())) {
                 reward *= symbols.get(Double.toString(toDouble));
             }
         }
-
-        System.out.println("Reward = " + reward);
         return reward;
     }
 }

@@ -24,48 +24,21 @@ public class OutputForm {
         return matrix;
     }
 
-    public void setMatrix(List<List<String>> matrix) {
-        this.matrix = matrix;
-    }
-
-    public int getReward() {
-        return reward;
-    }
-
-    public void setReward(int reward) {
-        this.reward = reward;
-    }
-
-    public Map<String, List<String>> getAppliedWinningCombinations() {
-        return appliedWinningCombinations;
-    }
-
-    public void setAppliedWinningCombinations(Map<String, List<String>> appliedWinningCombinations) {
-        this.appliedWinningCombinations = appliedWinningCombinations;
-    }
-
-    public String getAppliedBonusSymbol() {
-        return appliedBonusSymbol;
-    }
-
-    public void setAppliedBonusSymbol(String appliedBonusSymbol) {
-        this.appliedBonusSymbol = appliedBonusSymbol;
-    }
-
     @Override
     public String toString() {
-        List<String> value = new ArrayList<>();
+        List<String> value;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("{ ").append("\"matrix\":[").append("\n");
+        stringBuilder.append("{ \"matrix\":[\n");
         for (int i = 0; i < matrix.size(); i++) {
             value = matrix.get(i);
             stringBuilder.append(value).append("\n");
         }
-        stringBuilder.append(
-                        "],")
-                .append("\n").append("\"reward\": ").append(reward).append(",")
-                .append("\n").append("appliedWinningCombinations=").append(appliedWinningCombinations)
-                .append(" appliedBonusSymbol='").append(appliedBonusSymbol).append('\'').append('}');
+        stringBuilder.append("],\n")
+                .append("\"reward\": ").append(reward).append(",\n")
+                .append("appliedWinningCombinations=")
+                .append(appliedWinningCombinations)
+                .append(" appliedBonusSymbol='")
+                .append(appliedBonusSymbol).append('\'').append('}');
         return stringBuilder.toString();
     }
 }

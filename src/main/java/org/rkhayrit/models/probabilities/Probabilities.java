@@ -15,15 +15,7 @@ public class Probabilities {
         return standardSymbols;
     }
 
-    public void setStandardSymbols(List<StandardSymbol> standardSymbols) {
-        this.standardSymbols = standardSymbols;
-    }
-
     public BonusSymbols getBonusSymbols() {
         return bonusSymbols;
-    }
-
-    public void setBonusSymbols(BonusSymbols bonusSymbols) {
-        this.bonusSymbols = bonusSymbols;
     }
 }

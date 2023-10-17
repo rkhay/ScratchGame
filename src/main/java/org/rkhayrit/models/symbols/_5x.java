@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class _5x {
     @JsonProperty("reward_multiplier")
     private Double rewardMultiplier;
+    @JsonProperty("type")
     private String type;
+    @JsonProperty("impact")
     private String impact;
 
     public Double getRewardMultiplier() {
@@ -22,13 +24,5 @@ public class _5x {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getImpact() {
-        return impact;
-    }
-
-    public void setImpact(String impact) {
-        this.impact = impact;
     }
 }

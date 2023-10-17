@@ -14,43 +14,24 @@ public class ProbabilitySymbolsBonus {
     @JsonProperty("MISS")
     private int mISS;
 
-    public int get_10x() {
+    public int get10X() {
         return _10x;
     }
 
-    public void set_10x(int _10x) {
-        this._10x = _10x;
-    }
-
-    public int get_5x() {
+    public int get5X() {
         return _5x;
     }
 
-    public void set_5x(int _5x) {
-        this._5x = _5x;
-    }
-
-    public int get_1000() {
+    public int get1000() {
         return _1000;
     }
 
-    public void set_1000(int _1000) {
-        this._1000 = _1000;
-    }
-
-    public int get_500() {
+    public int get500() {
         return _500;
-    }
-
-    public void set_500(int _500) {
-        this._500 = _500;
     }
 
     public int getmISS() {
         return mISS;
     }
 
-    public void setmISS(int mISS) {
-        this.mISS = mISS;
-    }
 }

@@ -8,7 +8,9 @@ import java.util.List;
 public class _10x {
     @JsonProperty("reward_multiplier")
     private Double rewardMultiplier;
+    @JsonProperty("type")
     private String type;
+    @JsonProperty("impact")
     private String impact;
 
     public Double getRewardMultiplier() {
@@ -25,13 +27,5 @@ public class _10x {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getImpact() {
-        return impact;
-    }
-
-    public void setImpact(String impact) {
-        this.impact = impact;
     }
 }

@@ -5,9 +5,13 @@ import org.rkhayrit.models.combinations.WinCombinations;
 import org.rkhayrit.models.probabilities.Probabilities;
 
 public class ScratchGame {
+    @JsonProperty("columns")
     private int columns;
+    @JsonProperty("rows")
     private int rows;
+    @JsonProperty("symbols")
     private Symbols symbols;
+    @JsonProperty("probabilities")
     private Probabilities probabilities;
     @JsonProperty("win_combinations")
     private WinCombinations winCombinations;
@@ -16,16 +20,8 @@ public class ScratchGame {
         return columns;
     }
 
-    public void setColumns(int columns) {
-        this.columns = columns;
-    }
-
     public int getRows() {
         return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
     }
 
     public Symbols getSymbols() {
@@ -40,16 +36,8 @@ public class ScratchGame {
         return probabilities;
     }
 
-    public void setProbabilities(Probabilities probabilities) {
-        this.probabilities = probabilities;
-    }
-
     public WinCombinations getWinCombinations() {
         return winCombinations;
-    }
-
-    public void setWinCombinations(WinCombinations winCombinations) {
-        this.winCombinations = winCombinations;
     }
 
     @Override

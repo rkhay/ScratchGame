@@ -8,7 +8,9 @@ import java.util.List;
 public class SameSymbolsVertically {
     @JsonProperty("reward_multiplier")
     private double rewardMultiplier;
+    @JsonProperty("when")
     private String when;
+    @JsonProperty("group")
     private String group;
     @JsonProperty("covered_areas")
     private List<List<String>> coveredAreas = new ArrayList<List<String>>();
@@ -35,13 +37,5 @@ public class SameSymbolsVertically {
 
     public void setGroup(String group) {
         this.group = group;
-    }
-
-    public List<List<String>> getCoveredAreas() {
-        return coveredAreas;
-    }
-
-    public void setCoveredAreas(List<List<String>> coveredAreas) {
-        this.coveredAreas = coveredAreas;
     }
 }

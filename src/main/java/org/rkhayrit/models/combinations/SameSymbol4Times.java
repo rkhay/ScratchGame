@@ -5,8 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class SameSymbol4Times {
     @JsonProperty("reward_multiplier")
     private double rewardMultiplier;
+    @JsonProperty("when")
     private String when;
+    @JsonProperty("count")
     private int count;
+    @JsonProperty("group")
     private String group;
 
     public double getRewardMultiplier() {
@@ -27,10 +30,6 @@ public class SameSymbol4Times {
 
     public int getCount() {
         return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public String getGroup() {

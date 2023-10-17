@@ -3,9 +3,9 @@ package org.rkhayrit.models.symbols;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class A {
-
     @JsonProperty("reward_multiplier")
     private Double rewardMultiplier;
+    @JsonProperty("type")
     private String type;
 
     public Double getRewardMultiplier() {

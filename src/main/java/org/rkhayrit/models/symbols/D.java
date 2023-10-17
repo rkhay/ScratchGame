@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class D {
     @JsonProperty("reward_multiplier")
     private Double rewardMultiplier;
+    @JsonProperty("type")
     private String type;
 
     public Double getRewardMultiplier() {

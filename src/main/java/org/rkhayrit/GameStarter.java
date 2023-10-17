@@ -38,6 +38,6 @@ public class GameStarter implements Runnable {
 
         Map<String, Integer> matchSymbols = matrix.calculateMatchingSymbols(generatedMatrix);
         int reward = new Reward().calculateReward(matchSymbols, bettingAmount);
-        matrix.printMatrix(reward);
+        matrix.printResult(reward);
     }
 }
